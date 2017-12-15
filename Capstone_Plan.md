@@ -21,8 +21,31 @@ _A roster application for your school's lesson and class studios, or your own pr
   * Events can recur for a specified amount of time
   * Events can recur on specific days
   * A full-school room calendar can be viewed.
+  * Account payments can be made and tracked.
 
 ## Anticipated Model Structure
+
+* User
+  * has one account
+    * Devise for authentication. Probably just e-mail, consider benefits of a username instead.
+
+* Account
+  * belongs to user
+  * has many classes through account_classes optional: true
+    * user_id
+    * admin (boolean, default: false)
+    * teacher (boolean, default: nil)
+    * Active (boolean, default: true)
+    * User First/last
+    * Parent 1 First/last (optional)
+    * Parent 2 First/last (optional)
+    * Address 1
+    * Address 2 (optional)
+    * Phone 1
+    * Phone 2 (optional)
+    * Notes
+
+    
 
 
 
