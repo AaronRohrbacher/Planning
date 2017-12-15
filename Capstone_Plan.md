@@ -4,9 +4,9 @@
 _A roster application for your school's lesson and class studios, or your own private lesson studio_
 
 ## M.V.P
-* SuperUsers (me) can create schools or studios via the command line
-* Teachers can list their current classes and/or students.
-* Admins can add update and delete Users, classes, and students.
+* SuperUsers (me) can create schools via the command line
+* Teachers can list their current events and/or students.
+* Admins can add update and delete Users, events, and students.
   * Users can be Admins, teachers, or students.
   * Users are linked to accounts, which are never destroyed, but rather marked as active or inactive (for future mailing lists, etc.)
 * Admins can initiate events
@@ -15,7 +15,7 @@ _A roster application for your school's lesson and class studios, or your own pr
   * Events should occur in a room.
 
 ## Beyond the M.V.P.
-  * Teachers and students or classes are linked to a Board, where a teacher can leave lesson/class notes, upload materials, and the student can view and communicate.
+  * Teachers and students or events are linked to a Board, where a teacher can leave lesson/class notes, upload materials, and the student can view and communicate.
   * Events in a room cannot be double booked.
   * Events can recur
   * Events can recur for a specified amount of time
@@ -25,29 +25,79 @@ _A roster application for your school's lesson and class studios, or your own pr
 
 ## Anticipated Model Structure
 
-* User
-  * has one account
-    * Devise for authentication. Probably just e-mail, consider benefits of a username instead.
+* School (scalability, baby!)
+  * has_many everythings except users
+    * name
+    * logo (attachment)
+    * description
 
-* Account
-  * belongs to user
-  * has many classes through account_classes optional: true
-    * user_id
-    * admin (boolean, default: false)
-    * teacher (boolean, default: nil)
-    * Active (boolean, default: true)
-    * User First/last
-    * Parent 1 First/last (optional)
-    * Parent 2 First/last (optional)
-    * Address 1
-    * Address 2 (optional)
-    * Phone 1
-    * Phone 2 (optional)
-    * Notes
+  * User
+    * has one account
+      * Devise for authentication.
 
-    
+  * Account -- in controller, if teacher is true, add teacher name to Teacher model.
+    * belongs_to school
+    * belongs to user
+    * has many account_events
+    * has many events through account_events
+      * school_id
+      * user_id
+      * admin (boolean, default: false)
+      * teacher (boolean, default: false)
+      * Active (boolean, default: true)
+      * User First/last
+      * Parent 1 First/last (optional)
+      * Parent 2 First/last (optional)
+      * Address 1
+      * Address 2 (optional)
+      * Phone 1
+      * Phone 2 (optional)
+      * Avatar (optional)
+      * Notes
+
+  * Teacher
+    belongs_to school
+    * has many teacher_events
+    * has many events through teacher_events
+      * school_id
+      * First name
+      * last name
+
+  * TeacherEvent
+    * belongs_to school
+    * belongs_to teacher
+    * belongs_to event
+      * school_id
 
 
+  * AccountEvent
+    * belongs_to school
+    * belongs_to account
+    * belongs_to event
+      * school_id
+
+  * Event
+    * belongs_to school
+    * has many teacher_events
+    * has many account_events
+    * has many accounts through account_events
+    * has many teachers through teacher_events
+    * belongs_to room
+      * school_id
+      * room_id
+      * event_type ('private_lesson' 'meeting' 'class')
+      * private_lesson (boolean)
+      * name
+      * description
+      * start_time
+      * end_time
+
+  * Room
+    * belongs_to school
+    * has_many events
+      * school_id
+      * room_number
+      * room_name (optional)
 
 ## Development schedule
 * Weekend:
