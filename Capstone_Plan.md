@@ -82,6 +82,7 @@ _A roster application for your school's lesson and class studios, or your own pr
     * has many account_events
     * has many accounts through account_events
     * has many teachers through teacher_events
+    * has many times
     * belongs_to room
       * school_id
       * room_id
@@ -89,8 +90,13 @@ _A roster application for your school's lesson and class studios, or your own pr
       * private_lesson (boolean)
       * name
       * description
-      * start_time
-      * end_time
+
+  * Time
+    * belongs_to event
+      * event_id
+      * day (integer)
+      * start time
+      * end time
 
   * Room
     * belongs_to school
