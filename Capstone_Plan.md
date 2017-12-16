@@ -16,6 +16,7 @@ _A roster application for your school's lesson and class studios, or your own pr
 
 ## Beyond the M.V.P.
   * Teachers and students or events are linked to a Board, where a teacher can leave lesson/class notes, upload materials, and the student can view and communicate.
+  * Teachers may update their timecard by marking attendance policies on an event.
   * Events in a room cannot be double booked.
   * Events can recur
   * Events can recur for a specified amount of time
@@ -59,16 +60,23 @@ _A roster application for your school's lesson and class studios, or your own pr
   * belongs_to school
   * has many teacher_events
   * has many events through teacher_events
+  * has many timecards
     * school_id
     * First name
     * last name
+
+* Timecard
+  * belongs_to teacher
+    * teacher_id
+    * event
+    * time
+    * price
 
 * TeacherEvent
   * belongs_to school
   * belongs_to teacher
   * belongs_to event
     * school_id
-
 
 * AccountEvent
   * belongs_to school
