@@ -56,7 +56,7 @@ _A roster application for your school's lesson and class studios, or your own pr
     * Notes
 
 * Teacher
-  belongs_to school
+  * belongs_to school
   * has many teacher_events
   * has many events through teacher_events
     * school_id
