@@ -41,6 +41,7 @@ _A roster application for your school's lesson and class studios, or your own pr
   * belongs to user
   * has many account_events
   * has many events through account_events
+  * has many attendances
     * school_id
     * user_id
     * admin (boolean, default: false)
@@ -60,17 +61,24 @@ _A roster application for your school's lesson and class studios, or your own pr
   * belongs_to school
   * has many teacher_events
   * has many events through teacher_events
-  * has many timecards
+  * has many timereports
     * school_id
     * First name
     * last name
 
-* Timecard
+* Timereport
   * belongs_to teacher
     * teacher_id
     * event
     * time
     * price
+    * paid (boolean)
+
+* Attendance
+  * belongs_to account
+  * account_id
+  * event
+  * attendance_type ('excused_absence' 'unexcused_absence' 'present')
 
 * TeacherEvent
   * belongs_to school
