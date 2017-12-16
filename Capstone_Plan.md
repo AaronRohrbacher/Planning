@@ -11,7 +11,7 @@ _A roster application for your school's lesson and class studios, or your own pr
   * Users are linked to accounts, which are never destroyed, but rather marked as active or inactive (for future mailing lists, etc.)
 * Admins can initiate events
   * Events can be classes, private lessons, or 'other' (meetings, etc.)
-  * Events should have a start and end dateTime
+  * Events should have a start and end time, and happen on days of the week.
   * Events should occur in a room.
 
 ## Beyond the M.V.P.
@@ -83,9 +83,8 @@ _A roster application for your school's lesson and class studios, or your own pr
     * has many accounts through account_events
     * has many teachers through teacher_events
     * has many times
-    * belongs_to room
+    * has many rooms through time
       * school_id
-      * room_id
       * event_type ('private_lesson' 'meeting' 'class')
       * private_lesson (boolean)
       * name
@@ -93,14 +92,17 @@ _A roster application for your school's lesson and class studios, or your own pr
 
   * Time
     * belongs_to event
+    * belongs_to room
       * event_id
+      * room_id
       * day (integer)
       * start time
       * end time
 
   * Room
     * belongs_to school
-    * has_many events
+    * has_many times
+    * has_many events through time
       * school_id
       * room_number
       * room_name (optional)
@@ -110,10 +112,10 @@ _A roster application for your school's lesson and class studios, or your own pr
   * Further research gems regarding scheduling (not much luck yet), which may take things out of "beyond the M.V.P." and move them to "M.V.P."
   * Research Google Calendar's API to see if that might work instead.
   * Generate models and controllers for the app's current adjusted MVP. Doesn't have to look like much, but relationships should be functional and accurate, at least via the Rails Console.
-  * Take a peek at adjusted "Beyond the M.V.P." features. Will your current models support adding these features?
+  * Take a peek at adjusted "Beyond the M.V.P." features. Will your current models support adding these features? Can you refactor to allow for more fluid addition of features?
 * Monday:
   * Generate views based on models and controllers. Integrate AJAX/jQuery where appropriate to make a nice UX.
-  * Spend good time on the user experience. Are admins seeing what admins should see? Are teachers seeing what teachers should see? Are students seeing what students should see?
+  * Spend good time on the user experience. Are admins seeing what admins should see? Are teachers seeing what teachers should see? Are students seeing what students should see? Can teachers see their daily rosters with ease?
   * Answer this question: Am I ACTUALLY ready to look at a "Beyond the M.V.P." feature? If so, look ahead to Tuesday. IF NOT, DON'T.
 * Tuesday:
   * Depending on how Monday went, start looking at "Beyond the M.V.P." features. Build models and controllers, getting features to work ONE AT A TIME.
