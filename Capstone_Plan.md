@@ -31,81 +31,81 @@ _A roster application for your school's lesson and class studios, or your own pr
     * logo (attachment)
     * description
 
-  * User
-    * has one account
-      * Devise for authentication.
+* User
+  * has one account
+    * Devise for authentication.
 
-  * Account -- in controller, if teacher is true, add teacher name to Teacher model.
-    * belongs_to school
-    * belongs to user
-    * has many account_events
-    * has many events through account_events
-      * school_id
-      * user_id
-      * admin (boolean, default: false)
-      * teacher (boolean, default: false)
-      * Active (boolean, default: true)
-      * User First/last
-      * Parent 1 First/last (optional)
-      * Parent 2 First/last (optional)
-      * Address 1
-      * Address 2 (optional)
-      * Phone 1
-      * Phone 2 (optional)
-      * Avatar (optional)
-      * Notes
+* Account -- in controller, if teacher is true, add teacher name to Teacher model.
+  * belongs_to school
+  * belongs to user
+  * has many account_events
+  * has many events through account_events
+    * school_id
+    * user_id
+    * admin (boolean, default: false)
+    * teacher (boolean, default: false)
+    * Active (boolean, default: true)
+    * User First/last
+    * Parent 1 First/last (optional)
+    * Parent 2 First/last (optional)
+    * Address 1
+    * Address 2 (optional)
+    * Phone 1
+    * Phone 2 (optional)
+    * Avatar (optional)
+    * Notes
 
-  * Teacher
-    belongs_to school
-    * has many teacher_events
-    * has many events through teacher_events
-      * school_id
-      * First name
-      * last name
+* Teacher
+  belongs_to school
+  * has many teacher_events
+  * has many events through teacher_events
+    * school_id
+    * First name
+    * last name
 
-  * TeacherEvent
-    * belongs_to school
-    * belongs_to teacher
-    * belongs_to event
-      * school_id
+* TeacherEvent
+  * belongs_to school
+  * belongs_to teacher
+  * belongs_to event
+    * school_id
 
 
-  * AccountEvent
-    * belongs_to school
-    * belongs_to account
-    * belongs_to event
-      * school_id
+* AccountEvent
+  * belongs_to school
+  * belongs_to account
+  * belongs_to event
+    * school_id
 
-  * Event
-    * belongs_to school
-    * has many teacher_events
-    * has many account_events
-    * has many accounts through account_events
-    * has many teachers through teacher_events
-    * has many times
-    * has many rooms through time
-      * school_id
-      * event_type ('private_lesson' 'meeting' 'class')
-      * private_lesson (boolean)
-      * name
-      * description
+* Event
+  * belongs_to school
+  * has many teacher_events
+  * has many account_events
+  * has many accounts through account_events
+  * has many teachers through teacher_events
+  * has many times
+  * has many rooms through time
+    * school_id
+    * event_type ('private_lesson' 'meeting' 'class')
+    * private_lesson (boolean)
+    * name
+    * description
 
-  * Time
-    * belongs_to event
-    * belongs_to room
-      * event_id
-      * room_id
-      * day (integer)
-      * start time
-      * end time
+* Time
+  * belongs_to event
+  * belongs_to room
+    * event_id
+    * room_id
+    * day (integer)
+    * start time
+    * end time
 
-  * Room
-    * belongs_to school
-    * has_many times
-    * has_many events through time
-      * school_id
-      * room_number
-      * room_name (optional)
+* Room
+  * belongs_to school
+  * has_many times
+  * has_many events through time
+    * school_id
+    * room_number
+    * room_name (optional)
 
 ## Development schedule
 * Weekend:
